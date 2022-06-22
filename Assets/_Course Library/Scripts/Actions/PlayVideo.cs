@@ -20,6 +20,9 @@ public class PlayVideo : MonoBehaviour
     private VideoPlayer videoPlayer = null;
     private MeshRenderer meshRenderer = null;
 
+    private readonly string shaderUsed = "Universal Render Pipeline/Unlit";
+
+    private Material offMaterial = null;
     private int index = 0;
 
     private void Awake()
@@ -29,17 +32,13 @@ public class PlayVideo : MonoBehaviour
 
         if (videoClips.Count > 0)
             videoPlayer.clip = videoClips[0];
+
+        offMaterial = meshRenderer.material;
+
+        videoMaterial = new Material(Shader.Find(shaderUsed));
+        videoMaterial.color = Color.white;
     }
 
-    private void OnEnable()
-    {
-        videoPlayer.prepareCompleted += ApplyVideoMaterial;
-    }
-
-    private void OnDisable()
-    {
-        videoPlayer.prepareCompleted -= ApplyVideoMaterial;
-    }
 
     private void Start()
     {
@@ -85,13 +84,13 @@ public class PlayVideo : MonoBehaviour
 
     public void Play()
     {
-        videoMaterial.color = Color.white;
+        ApplyVideoMaterial();
         videoPlayer.Play();
     }
 
     public void Stop()
     {
-        videoMaterial.color = Color.black;
+        meshRenderer.material = offMaterial;
         videoPlayer.Stop();
     }
 
@@ -103,10 +102,12 @@ public class PlayVideo : MonoBehaviour
 
     public void TogglePlayPause()
     {
+        meshRenderer.material = videoMaterial;
+
         if (videoPlayer.isPlaying)
             videoPlayer.Pause();
         else
-            Play();
+            videoPlayer.Play();
     }
 
     public void SetPlay(bool value)
@@ -121,14 +122,15 @@ public class PlayVideo : MonoBehaviour
         }
     }
 
-    private void ApplyVideoMaterial(VideoPlayer source)
+    private void ApplyVideoMaterial()
     {
         meshRenderer.material = videoMaterial;
     }
 
     private void OnValidate()
     {
-        var mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-        videoMaterial = mat;
+            
+        if (TryGetComponent(out VideoPlayer videoPlayer))
+            videoPlayer.targetMaterialProperty = "_BaseMap";
     }
 }

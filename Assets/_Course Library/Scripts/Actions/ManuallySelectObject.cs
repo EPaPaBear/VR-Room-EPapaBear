@@ -26,12 +26,12 @@ public class ManuallySelectObject : MonoBehaviour
     {
         interactable.gameObject.SetActive(true);
         interactor.selectActionTrigger = XRBaseControllerInteractor.InputTriggerType.StateChange;
-        interactionManager.SelectEnter(interactor as IXRSelectInteractor, interactable);
+        interactionManager.ForceSelect(interactor, interactable);
     }
 
     public void ManuallyDeselect()
     {
-        interactionManager.SelectExit(interactor as IXRSelectInteractor, interactable);
+        interactionManager.ClearInteractorSelection(interactor);
         interactor.selectActionTrigger = originalTriggerType;
         interactable.gameObject.SetActive(false);
     }

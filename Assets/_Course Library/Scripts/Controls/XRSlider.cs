@@ -27,7 +27,7 @@ public class XRSlider : XRBaseInteractable
 
     public float Value { get; private set; } = 0.0f;
 
-    private IXRSelectInteractor selectInteractor = null;
+    private XRBaseInteractor selectInteractor = null;
     private Vector3 selectPosition = Vector3.zero;
     private float startingValue = 0.0f;
 
@@ -53,7 +53,7 @@ public class XRSlider : XRBaseInteractable
 
     private void StartGrab(SelectEnterEventArgs eventArgs)
     {
-        selectInteractor = eventArgs.interactorObject;
+        selectInteractor = eventArgs.interactor;
         selectPosition = selectInteractor.transform.position;
         startingValue = Value;
     }

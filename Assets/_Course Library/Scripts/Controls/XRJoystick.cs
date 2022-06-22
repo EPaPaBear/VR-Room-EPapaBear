@@ -34,7 +34,7 @@ public class XRJoystick : XRBaseInteractable
     public ValueChangeEvent OnYValueChange = new ValueChangeEvent();
 
     public Vector2 Value { get; private set; } = Vector2.zero;
-    private IXRSelectInteractor selectInteractor = null;
+    private XRBaseInteractor selectInteractor = null;
 
     private Vector3 initialPosition = Vector3.zero;
 
@@ -57,7 +57,7 @@ public class XRJoystick : XRBaseInteractable
 
     private void StartGrab(SelectEnterEventArgs eventArgs)
     {
-        selectInteractor = eventArgs.interactorObject;
+        selectInteractor = eventArgs.interactor;
         initialPosition = ConvertToLocal(selectInteractor.transform.position);
     }
 
