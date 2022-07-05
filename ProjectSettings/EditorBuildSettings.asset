@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Create_with_VR_Starter_Scene.unity
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 0
+    path: Assets/Scenes/PapaBear Room.unity
     guid: afdcb113ffd5a4353ad88f0dd03743af
+  - enabled: 1
+    path: Assets/Scenes/VR Classroom.unity
+    guid: 9ce977349fd2f4c2ebb3bca8135570c6
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 8fccb80e6c9a84389a75f2c1ed4d786d, type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d3134b6f939114be9b8d6dbeff42d453, type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 2b485d7676a7d4b3eba3a764bd60d013, type: 2}
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4f0559910c26e40ceb6e66fe0afe9cd9, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: c896d8a51421d489288afddb9b164df9, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 0b8e6b14e1d4146e4abf106209abc01c, type: 2}
